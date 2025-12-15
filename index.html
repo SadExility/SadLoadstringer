@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Loadstring Generator</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        input, textarea {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        button {
+            background: #7a00ff;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #9b3dff;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Loadstring Generator</h2>
+
+    <input type="text" id="link" placeholder="Cole seu link raw aqui">
+
+    <button onclick="gerar()">Gerar e Copiar</button>
+
+    <textarea id="resultado" readonly placeholder="O loadstring aparecerá aqui"></textarea>
+</div>
+
+<script>
+    function gerar() {
+        const link = document.getElementById("link").value.trim();
+        if (!link) {
+            alert("Coloque um link!");
+            return;
+        }
+
+        const loadstring = `loadstring(game:HttpGet("${link}"))()`;
+        const textarea = document.getElementById("resultado");
+
+        textarea.value = loadstring;
+        textarea.select();
+        document.execCommand("copy");
+
+        alert("Loadstring copiado para a área de transferência!");
+    }
+</script>
+
+</body>
+</html>
